@@ -39,7 +39,7 @@ from .schema import list_article_recs_schema, list_product_recs_schema
 from backend.schema import list_schema
 
 
-@list_schema(StoreFilter)
+# @list_schema(StoreFilter)
 class StoreList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = StoreSerializer
@@ -92,7 +92,7 @@ class StoreDetail(viewsets.ModelViewSet):
             return self.destroy(request, *args, **kwargs)
 
 
-@list_schema(ArticleFilter)
+# @list_schema(ArticleFilter)
 class ArticleList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = ArticleSerializer
@@ -115,7 +115,7 @@ class ArticleList(generics.ListAPIView):
         return Response(serializer.data)
 
 
-@list_schema(OrderFilter)
+# @list_schema(OrderFilter)
 class OrderList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = OrderLineSerializer
@@ -141,7 +141,7 @@ class OrderList(generics.ListAPIView):
         return Response({})
 
 
-@list_schema(PaymentDateFilter)
+# @list_schema(PaymentDateFilter)
 class PaymentList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = PaymentSerializer
@@ -172,7 +172,7 @@ class PaymentList(generics.ListAPIView):
         return Response({})
 
 
-@list_schema(ProductFilter)
+# @list_schema(ProductFilter)
 class ProductList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = ProductSerializer

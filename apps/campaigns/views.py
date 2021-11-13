@@ -10,7 +10,7 @@ from .permissions import CampaignPermission
 from backend.permissions import IsSuperUserOrAdmin
 from backend.schema import list_schema
 
-@list_schema(CampaignFilter)
+# @list_schema(CampaignFilter)
 class CampaignList(generics.ListCreateAPIView):
     serializer_class = CampaignSerializer
     permission_classes = [IsAuthenticated]

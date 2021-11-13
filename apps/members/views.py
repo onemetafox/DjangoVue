@@ -21,7 +21,7 @@ from backend.schema import list_schema
 logger = logging.getLogger('django')
 
 
-@list_schema(MemberFilter)
+# @list_schema(MemberFilter)
 class MembersList(generics.ListCreateAPIView):
     serializer_class = MemberSerializer
     permission_classes = [IsAuthenticated]
@@ -65,7 +65,7 @@ class MemberDetail(mixins.RetrieveModelMixin,
         return instance
 
 
-@list_schema(ReceiptFilter)
+# @list_schema(ReceiptFilter)
 class MemberReceiptsList(LookupMixin, generics.ListAPIView):
     serializer_class = ReceiptSerializer
     permission_classes = [IsAuthenticated & MemberPermission]
