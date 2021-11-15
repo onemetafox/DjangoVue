@@ -2,14 +2,6 @@
     <div id="product-list">
         <input type="text" class="form-control">
         <div class="toolbar-holder">
-            <div class="select-holder">
-                <select>
-                  <option>Product</option>
-                  <option>Product</option>
-                  <option>Product</option>
-                  <option>Product</option>
-                </select>
-            </div>
             <button class="btn btn-primary">Analyze</button>
         </div>
         <p>Start enter the product name and then select from matches list</p>
@@ -21,6 +13,7 @@
 
 <script>
 import ConProduct from './ConProduct.vue';
+import { mapGetters,mapActions} from 'vuex';
 export default {
     name: 'ProductList',
     components: {
@@ -28,7 +21,7 @@ export default {
     },
     computed: {
       ...mapGetters({
-        leadState: 'enLeads/getState'
+        leadState: 'products/getState'
       }),
       wrapClass() {
         return this.leadState.editID === -1 ? 'medium-12' : 'medium-9';
@@ -38,7 +31,7 @@ export default {
       },
     },
     beforeRouteEnter(to, from, next) {
-      store.dispatch('enLeads/search').then(() => {
+      store.dispatch('products/search').then(() => {
         next()
       })
     },

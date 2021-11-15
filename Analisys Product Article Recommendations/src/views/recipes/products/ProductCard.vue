@@ -10,14 +10,11 @@
     </div>
 </template>
 
-
 <script>
- 
 
     export default {
         name: "ProductCard",
         props:["author"]
-       
      
     };
 </script>
