@@ -1,13 +1,15 @@
 import { createStore } from 'vuex'
 
 import global from "./modules/global"
-import enLeads from './modules/entity/leads';
+import products from './modules/products';
+import articles from './modules/articles';
 
 
 const store = createStore({
 	modules: {
     global,
-    enLeads
+    products,
+    articles
   },
   
 });

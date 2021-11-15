@@ -169,67 +169,24 @@ export default {
 
   SET_ERROR: 'SET_ERROR',
   SET_MSG: 'SET_MSG',
-  // Admin
-  admin: {
-    viewsearch: 'MAUsersViewSearch',
-    users: {
-      editID: 'MAUsersEditID',
-      set: 'MAUsersSet',
-      query: 'MAUsersQuery',
-    },
-    groups: {
-      editID: 'MAGroupsEditID',
-      get: 'MAGroupsGet',
-    },
-    fields: {
-      selectCatename: 'MAFieldsSelectCatename',
-      setCEGroupID: 'MAFieldsSetCEgroupID',
-      setCEFieldData: 'MAFieldsSetCEFieldData',
-      setCategories: 'MAFieldsSetCategories',
-      editGroup: 'MAFieldsEditGroup',
-      editField: 'MAFieldsEditField',
-    },
-    tags: {
-      editID: 'MATagsEditID',
-      get: 'MATagsGet',
-    }
+  
+  articles: {
+    get: 'MEArticlesGet',
+    getone: 'MEArticleGetOne',
+    query: 'MEArticleQuery',
+    queryHistory: 'MEArticleQueryHis',
+    editID: 'MEEditID',
+    editing: 'MEEditing',
+    page: 'MEPage'
   },
-  entity: {
-    leads: {
-      get: 'MELeadsGet',
-      getone: 'MELeadGetOne',
-      query: 'MELeadQuery',
-      queryHistory: 'MELeadQueryHis',
-      editID: 'MEEditID',
-      editing: 'MEEditing',
-      page: 'MEPage'
-    },
-    campaines: {
-      get: 'MECampainesGet',
-      getone: 'MECampaineGetOne',
-      query: 'MECampaineQuery',
-      queryHistory: 'MECampaineQueryHis',
-      editID: 'MEEditID',
-      editing: 'MEEditing',
-      page: 'MEPage'
-    },
-    accounts: {
-      get: 'MEAccountsGet',
-      getone: 'MEAccountGetOne',
-      query: 'MEAccountQuery',
-      queryHistory: 'MEAccountQueryHis',
-      editID: 'MEEditID',
-      editing: 'MEEditing',
-      page: 'MEPage'
-    },
-    opportunities: {
-      get: 'MEOpportunitiesGet',
-      getone: 'MEOpportunityGetOne',
-      query: 'MEOpportunityQuery',
-      queryHistory: 'MEOpportunityQueryHis',
-      editID: 'MEEditID',
-      editing: 'MEEditing',
-      page: 'MEPage'
-    }
-  }
+  products: {
+    get: 'MEProductsGet',
+    getone: 'MEProductGetOne',
+    query: 'MEProductQuery',
+    queryHistory: 'MEProductQueryHis',
+    editID: 'MEEditID',
+    editing: 'MEEditing',
+    page: 'MEPage'
+  },
+    
 };

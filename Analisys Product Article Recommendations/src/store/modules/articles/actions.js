@@ -1,5 +1,5 @@
-import types from '../../../mutation-types'
-import ApiClient from '../../../../api/ApiClient.js'
+import types from '../../mutation-types'
+import ApiClient from '../../../api/ApiClient.js'
 
 const apiVersion = 'v3'
 const resource = 'entities/leads'

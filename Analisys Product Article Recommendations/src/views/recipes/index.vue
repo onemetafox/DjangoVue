@@ -11,10 +11,10 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="product" role="tabpanel" aria-labelledby="product-tab">
-          <!-- <ProductList /> -->This is the first Tab
+          <ProductList /> 
         </div>
         <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="articles-tab">
-          I'm the second tab
+          <ArticleList /> 
         </div>
       </div>
     </div>
@@ -26,60 +26,14 @@
 <script>
   import { mapGetters } from "vuex";
   import store from '../../store';
-  // import LeadsHeader from './components/LeadHeader.vue';
-  // import LeadsTable from './components/LeadTable.vue';
-  // import LeadsEditPan from './components/LeadEditPannel.vue';
-  // import EditLead from './components/info/EditLead.vue'
+  import ProductList from './products/ProductList.vue';
+  import ArticleList from './articles/ArticleList.vue';
 
   export default {
     name: 'recipes',
     components: {
-      // LeadsHeader,
-      // LeadsTable,
-      // LeadsEditPan,
-      // EditLead,
+      ProductList,
+      ArticleList
     },
-    // computed: {
-    //   ...mapGetters({
-    //     leadState: 'enLeads/getState'
-    //   }),
-    //   wrapClass() {
-    //     return this.leadState.editID === -1 ? 'medium-12' : 'medium-9';
-    //   },
-    //   showEditPan() {
-    //     return this.leadState.editID !== -1 && this.leadState.editID !== 'new';
-    //   },
-    // },
-    // beforeRouteEnter(to, from, next) {
-    //   store.dispatch('enLeads/search').then(() => {
-    //     next()
-    //   })
-    // },
   };
 </script>
-<style lang="scss" scoped>
-  .leads-page {
-    width: 100%;
-  }
-  .left-wrap {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  .strip {
-    height: 25px;
-    width: auto;
-    background: #dcdcdc;
-    color: black;
-    float: left;
-    font-size: 11px;
-    margin: 0px 6px 0px 0px;
-    padding: 1px 4px 1px 3px;
-    text-align: right;
-    width: 75px;
-    -moz-border-radius-topleft: 7px;
-    -moz-border-radius-bottomleft: 7px;
-    -webkit-border-top-left-radius: 7px;
-    -webkit-border-bottom-left-radius: 7px;
-  }
-</style>
