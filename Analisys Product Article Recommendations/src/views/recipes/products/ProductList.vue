@@ -23,17 +23,17 @@ export default {
       ...mapGetters({
         leadState: 'products/getState'
       }),
-      wrapClass() {
-        return this.leadState.editID === -1 ? 'medium-12' : 'medium-9';
-      },
-      showEditPan() {
-        return this.leadState.editID !== -1 && this.leadState.editID !== 'new';
-      },
+      // wrapClass() {
+      //   return this.leadState.editID === -1 ? 'medium-12' : 'medium-9';
+      // },
+      // showEditPan() {
+      //   return this.leadState.editID !== -1 && this.leadState.editID !== 'new';
+      // },
     },
-    beforeRouteEnter(to, from, next) {
-      store.dispatch('products/search').then(() => {
-        next()
-      })
-    },
+    // beforeRouteEnter(to, from, next) {
+    //   store.dispatch('products/search').then(() => {
+    //     next()
+    //   })
+    // },
 }
 </script>
