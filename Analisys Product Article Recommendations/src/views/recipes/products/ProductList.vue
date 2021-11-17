@@ -9,15 +9,21 @@
     <div id="products">
         <ConProduct/>
     </div>
+    <div id="product-rec">
+        <ProductRec />
+    </div>
 </template>
 
 <script>
 import ConProduct from './ConProduct.vue';
+import ProductRec from './ProductRec.vue';
 import { mapGetters,mapActions} from 'vuex';
+import store from '../../../store';
 export default {
     name: 'ProductList',
     components: {
-        ConProduct
+        ConProduct,
+        ProductRec
     },
     computed: {
       ...mapGetters({
@@ -29,6 +35,14 @@ export default {
       // showEditPan() {
       //   return this.leadState.editID !== -1 && this.leadState.editID !== 'new';
       // },
+    },
+    beforeCreate(to, from, next) {
+      store.dispatch('products/search').then(() => {
+        next()
+      });
+      // store.dispatch('products/rec').then(() => {
+      //   next()
+      // });
     },
     
 }

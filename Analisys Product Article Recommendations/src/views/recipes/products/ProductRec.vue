@@ -362,8 +362,8 @@
 
 <script>
 
-import CancelIcon from './layout/icons/cancel.vue'
-import RecommendedIcon from './layout/icons/recommended.vue'
+import CancelIcon from '../../../components/layout/icons/cancel.vue'
+import RecommendedIcon from '../../../components/layout/icons/recommended.vue'
 
 export default {
   name: 'Recommendations',

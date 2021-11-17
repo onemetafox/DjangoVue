@@ -34,11 +34,6 @@
     components: {
       ProductList,
       ArticleList
-    },
-    beforeCreate(to, from, next) {
-      store.dispatch('products/search').then(() => {
-        next()
-      })
-    },
+    }
   };
 </script>
