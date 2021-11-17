@@ -129,6 +129,9 @@ const actions = {
   article: async (context, article) => {
     context.commit(types.products.getone, article)
   },
+  articleRecList: async(context, articlesList) =>{
+    context.commit(types.products.getrec, articlesList)
+  }
   page: async (context, page) => {
     context.commit(types.products.page, page)
   },

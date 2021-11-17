@@ -182,6 +182,7 @@ export default {
   products: {
     get: 'MEProductsGet',
     getone: 'MEProductGetOne',
+    getrec: 'MEProductGetRec',
     query: 'MEProductQuery',
     queryHistory: 'MEProductQueryHis',
     editID: 'MEEditID',
