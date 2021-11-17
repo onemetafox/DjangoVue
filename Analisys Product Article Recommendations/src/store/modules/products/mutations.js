@@ -4,6 +4,9 @@ const mutations = {
   [types.products.get](state, productList) {
     state.productList = productList
   },
+  [types.products.rec](state, productList) {
+    state.productRecList = productList
+  },
   [types.products.getone](state, product) {
     state.product = product
   },

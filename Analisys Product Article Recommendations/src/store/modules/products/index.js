@@ -3,8 +3,9 @@ import mutations from './mutations.js'
 import actions from './actions.js'
 
 const state = {
-  leads: [],
-  lead: {},
+  productList: [],
+  product: {},
+  productRecList: [],
   query: null,
   queryHistory: [],
   editID: -1,

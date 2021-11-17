@@ -9,12 +9,11 @@ const actions = {
   search: (context, query) => {
     return new Promise((resolve, reject) => {
       let url = query ? `${resource}?query=${query}` : resource
-      console.log('action url...', url)
       new ApiClient(url, {apiVersion}).get()
         .then(res => {
           if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
           else if (res.data.data) {
-            context.commit(types.articles.get, JSON.parse(res.data.data))
+            context.commit(types.products.get, JSON.parse(res.data.data))
             console.log('res...', JSON.parse(res.data.data))
           }
           resolve()
@@ -25,14 +24,31 @@ const actions = {
         })
     })
   },
+  rec:(context, query)=> {
+    return new Promise((resolve, reject) => {
+      let url = resource+"/rec"
+      new ApiClient(url, {apiVersion}).get()
+      .then(res => {
+          if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
+          else if (res.data.data) {
+            context.commit(types.products.rec, JSON.parse(res.data.data))
+          }
+          resolve()
+        })
+        .catch(err => {
+          context.commit(`global/${types.SET_ERROR}`, err, {root: true});
+          reject(err)
+        })
+      
+    })
+  },
   show: (context, id) => {
     return new Promise((resolve, reject) => {
       new ApiClient(resource, {apiVersion}).show(id)
         .then(res => {
           if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
           else if (res.data.data) {
-            context.commit(types.articles.getone, JSON.parse(res.data.data))
-            resolve(JSON.parse(res.data.data))
+            context.commit(types.products.getone, JSON.parse(res.data.data))
           }
           resolve()
         })
@@ -98,23 +114,23 @@ const actions = {
   ///////////////////////// without Api /////////////////////////////
   query: async (context, query) => {
     query
-    ? context.commit(types.articles.query, query)
-    : context.commit(types.articles.query, null)
+    ? context.commit(types.products.query, query)
+    : context.commit(types.products.query, null)
   },
   queryHistory: async (context, track) => {
-    if (track) context.commit(types.articles.queryHistory, track)
+    if (track) context.commit(types.products.queryHistory, track)
   },
   editID: async (context, editID) => {
-    context.commit(types.articles.editID, editID);
+    context.commit(types.products.editID, editID);
   },
   editing: async (context, editing) => {
-    context.commit(types.articles.editing, editing);
+    context.commit(types.products.editing, editing);
   },
   article: async (context, article) => {
-    context.commit(types.articles.getone, article)
+    context.commit(types.products.getone, article)
   },
   page: async (context, page) => {
-    context.commit(types.articles.page, page)
+    context.commit(types.products.page, page)
   },
 };
 

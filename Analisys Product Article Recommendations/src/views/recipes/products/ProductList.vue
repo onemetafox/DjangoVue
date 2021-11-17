@@ -40,9 +40,9 @@ export default {
       store.dispatch('products/search').then(() => {
         next()
       });
-      // store.dispatch('products/rec').then(() => {
-      //   next()
-      // });
+      store.dispatch('products/rec').then(() => {
+        next()
+      });
     },
     
 }

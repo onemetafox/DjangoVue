@@ -5,6 +5,7 @@ import actions from './actions.js'
 const state = {
   articleList: [],
   article: {},
+  articleRecList: [],
   query: null,
   queryHistory: [],
   id: -1,
