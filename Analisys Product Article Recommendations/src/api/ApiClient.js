@@ -1,4 +1,5 @@
 /* global axios */
+import axios from 'axios';
 
 const DEFAULT_API_VERSION = 'v1';
 

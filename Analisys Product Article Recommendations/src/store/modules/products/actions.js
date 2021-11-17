@@ -1,8 +1,8 @@
 import types from '../../mutation-types'
 import ApiClient from '../../../api/ApiClient.js'
 
-const apiVersion = 'v3'
-const resource = 'entities/articles'
+const apiVersion = 'v1'
+const resource = 'products'
 
 const actions = {
   //////////////////////// with Api ////////////////////////
