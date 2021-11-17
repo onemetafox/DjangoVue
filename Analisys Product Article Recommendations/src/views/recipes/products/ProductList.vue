@@ -7,10 +7,10 @@
         <p>Start enter the product name and then select from matches list</p>
     </div>
     <div id="products">
-        <ConProduct/>
+        <ConProduct :productList = "productState:productList"/>
     </div>
     <div id="product-rec">
-        <ProductRec />
+        <ProductRec :productRecList="productState.productRecList"/>
     </div>
 </template>
 

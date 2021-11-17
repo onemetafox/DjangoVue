@@ -371,6 +371,12 @@ export default {
     CancelIcon,
     RecommendedIcon
   },
+  props:{
+    productRecList :{
+      type: any,
+      default: false
+    }
+  }
 }
 </script>
 
