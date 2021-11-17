@@ -7,10 +7,10 @@
         <p>Start enter the product name and then select from matches list</p>
     </div>
     <div id="products">
-        <ConProduct :productList = "products"/>
+        <ConProduct :productList = "getState.productList"/>
     </div>
     <div id="product-rec">
-        <ProductRec :productRecList="products"/>
+        <ProductRec :productRecList="getState.productRecList"/>
     </div>
 </template>
 
@@ -26,9 +26,12 @@ export default {
         ProductRec
     },
     computed: {
-      ...mapGetters([
-        'products/getState'
-      ])
+      // ...mapGetters({
+      //   productState : 'products/getState'
+      // })
+      getState(){
+        return store.getters['products/getState']
+      }
     },
     beforeCreate(to, from, next) {
       store.dispatch('products/search').then(() => {
