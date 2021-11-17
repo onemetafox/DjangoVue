@@ -16,7 +16,7 @@
         name: "ProductCard",
         props:{
             product:{
-                type: any,
+                type: [],
                 default: false
             }
         }

@@ -4,7 +4,7 @@
       <div class="col-lg-6 col-md-6"><p class="con-heading">Connected Products</p></div>
       <div class="col-lg-3 col-md-3"></div>
     </div>
-    <div  id="recommendations" class="row ps-5 p-0"  v-for="product in productList" :key="user.li" >  
+    <div  id="recommendations" class="row ps-5 p-0"  v-for="product in productList" :key="product.id" >  
       <ProductCard  :product = "product"/>
     </div>
     <div  id="recommendations" class="row ps-5 p-0" >
@@ -27,7 +27,7 @@
     },
     props:{
       productList: {
-        type: any,
+        type: [],
         default: false
       }
     }

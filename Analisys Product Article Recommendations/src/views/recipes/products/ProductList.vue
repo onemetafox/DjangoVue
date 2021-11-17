@@ -7,10 +7,10 @@
         <p>Start enter the product name and then select from matches list</p>
     </div>
     <div id="products">
-        <ConProduct :productList = "productState:productList"/>
+        <ConProduct :productList = "products"/>
     </div>
     <div id="product-rec">
-        <ProductRec :productRecList="productState.productRecList"/>
+        <ProductRec :productRecList="products"/>
     </div>
 </template>
 
@@ -26,15 +26,9 @@ export default {
         ProductRec
     },
     computed: {
-      ...mapGetters({
-        productState: 'products/getState'
-      }),
-      // wrapClass() {
-      //   return this.leadState.editID === -1 ? 'medium-12' : 'medium-9';
-      // },
-      // showEditPan() {
-      //   return this.leadState.editID !== -1 && this.leadState.editID !== 'new';
-      // },
+      ...mapGetters([
+        'products/getState'
+      ])
     },
     beforeCreate(to, from, next) {
       store.dispatch('products/search').then(() => {
