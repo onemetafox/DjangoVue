@@ -11,6 +11,6 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-// Vue.prototype.$axios = Axios;
+// // Vue.prototype.$axios = Axios;
 
-createApp(App).use(router, store).mount("#app");
+createApp(App).use(store).use(router).mount("#app");

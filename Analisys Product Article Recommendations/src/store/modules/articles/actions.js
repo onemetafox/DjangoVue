@@ -1,21 +1,21 @@
 import types from '../../mutation-types'
 import ApiClient from '../../../api/ApiClient.js'
 
-const apiVersion = 'v3'
-const resource = 'entities/leads'
+const apiVersion = 'v1'
+const resource = 'articles'
 
 const actions = {
   //////////////////////// with Api ////////////////////////
   search: (context, query) => {
     return new Promise((resolve, reject) => {
       let url = query ? `${resource}?query=${query}` : resource
-      console.log('action url...', url)
       new ApiClient(url, {apiVersion}).get()
         .then(res => {
-          if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
-          else if (res.data.data) {
-            context.commit(types.entity.leads.get, JSON.parse(res.data.data))
-            console.log('res...', JSON.parse(res.data.data))
+          if (res.data.status == "200"){
+            context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
+          } else if (res.data) {
+
+            context.commit(types.articles.get, res.data)
           }
           resolve()
         })
@@ -25,14 +25,33 @@ const actions = {
         })
     })
   },
+  rec:(context, query)=> {
+    return new Promise((resolve, reject) => {
+      let url = resource+"/rec"
+      new ApiClient(url, {apiVersion}).get()
+      .then(res => {
+          if (res.data.status == "200"){
+            context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
+          } else if (res.data) {
+
+            context.commit(types.articles.rec, res.data)
+          }
+          resolve()
+        })
+        .catch(err => {
+          context.commit(`global/${types.SET_ERROR}`, err, {root: true});
+          reject(err)
+        })
+      
+    })
+  },
   show: (context, id) => {
     return new Promise((resolve, reject) => {
       new ApiClient(resource, {apiVersion}).show(id)
         .then(res => {
           if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
           else if (res.data.data) {
-            context.commit(types.entity.leads.getone, JSON.parse(res.data.data))
-            resolve(JSON.parse(res.data.data))
+            context.commit(types.articles.getone, JSON.parse(res.data.data))
           }
           resolve()
         })
@@ -98,23 +117,29 @@ const actions = {
   ///////////////////////// without Api /////////////////////////////
   query: async (context, query) => {
     query
-    ? context.commit(types.entity.leads.query, query)
-    : context.commit(types.entity.leads.query, null)
+    ? context.commit(types.articles.query, query)
+    : context.commit(types.articles.query, null)
   },
   queryHistory: async (context, track) => {
-    if (track) context.commit(types.entity.leads.queryHistory, track)
+    if (track) context.commit(types.articles.queryHistory, track)
   },
   editID: async (context, editID) => {
-    context.commit(types.entity.leads.editID, editID);
+    context.commit(types.articles.editID, editID);
   },
   editing: async (context, editing) => {
-    context.commit(types.entity.leads.editing, editing);
+    context.commit(types.articles.editing, editing);
   },
-  lead: async (context, lead) => {
-    context.commit(types.entity.leads.getone, lead)
+  article: async (context, article) => {
+    context.commit(types.articles.getone, article)
+  },
+  articleList: async(context, articleList) => {
+    context.commit(types.articles.get, articleList)
+  },
+  articleRecList: async(context, articleRecList) =>{
+    context.commit(types.articles.rec, articleRecList)
   },
   page: async (context, page) => {
-    context.commit(types.entity.leads.page, page)
+    context.commit(types.articles.page, page)
   },
 };
 

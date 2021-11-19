@@ -185,8 +185,8 @@ class Product(models.Model):
     def list_items(user):
         # use OrderLine model to avoid spanning multi-valued relationships
         # https://docs.djangoproject.com/en/dev/topics/db/queries/#spanning-multi-valued-relationships
+        #.filter(store__merchant__organization_id=user.organization_id) \
         return models_.OrderLine.objects \
-            .filter(store__merchant__organization_id=user.organization_id) \
             .values('article__product') \
             .annotate(sold_items=Coalesce(Sum('count'), 0))
 

@@ -98,12 +98,15 @@ class StoreDetail(viewsets.ModelViewSet):
 class ArticleList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = ArticleSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_class = ArticleFilter
 
     def get_queryset(self):
-        return Article.list_items(self.request.user)
+        user = {"organization_id":1}
+        # return Article.list_items(self.request.user)
+        return Article.list_items(user)
+
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -183,9 +186,12 @@ class ProductList(generics.ListAPIView):
     filterset_class = ProductFilter
 
     def get_queryset(self):
-        return Product.list_items(self.request.user)
+        user = {"organization_id":1}
+        # return Product.list_items(self.request.user)
+        return Product.list_items(user)
 
     def list(self, request, *args, **kwargs):
+
         queryset = self.filter_queryset(self.get_queryset())
         queryset = Product.item_values(queryset)
         page = self.paginate_queryset(queryset)
@@ -194,7 +200,7 @@ class ProductList(generics.ListAPIView):
             return self.get_paginated_response(serializer.data)
 
         serializer = FetchProductSerializer(queryset, many=True)
-        return JsonResponse({'foo':'bar'})
+        return JsonResponse(serializer.data,  safe=False)
         # return Response(serializer.data)
 
 
@@ -258,7 +264,7 @@ class BoughtTogetherArticles(generics.ListAPIView):
 class ProductRecommendations(generics.ListAPIView):
     """Get products bought together with a given list of products."""
     serializer_class = ProductRecSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         flt = ProdRecInputSerializer(data=self.request.GET)

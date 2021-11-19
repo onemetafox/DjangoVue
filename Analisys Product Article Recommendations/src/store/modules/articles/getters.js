@@ -1,5 +1,5 @@
 const getters = {
-  getState: state => {
+  getState: (state) => {
     return state
   }
 };

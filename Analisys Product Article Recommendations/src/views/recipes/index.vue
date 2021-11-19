@@ -24,8 +24,6 @@
 </template>
 
 <script>
-  import { mapGetters } from "vuex";
-  import store from '../../store';
   import ProductList from './products/ProductList.vue';
   import ArticleList from './articles/ArticleList.vue';
 

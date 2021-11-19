@@ -1,29 +1,46 @@
 <template>
-    <div id="product-list">
-        <input type="text" class="form-control">
+    <div id="article-list">
+        <input type="text" v-model="query" class="form-control">
         <div class="toolbar-holder">
-            <div class="select-holder">
-                <select>
-                  <option>articles</option>
-                  <option>articles</option>
-                  <option>Product</option>
-                  <option>Product</option>
-                </select>
-            </div>
-            <button class="btn btn-primary">Analyze</button>
+            <button class="btn btn-primary" @click="search">Search</button>
         </div>
-        <p>Start enter the product name and then select from matches list</p>
+        <p>Start enter the article name and then select from matches list</p>
+    </div>
+    <div id="articles">
+        <ConArticle :articleList = "articleState.articleList"/>
+    </div>
+    <div id="article-rec">
+        <ArticleRec/>
     </div>
 </template>
 
 <script>
-
+import ConArticle from './ConArticle.vue';
+import ArticleRec from './ArticleRec.vue';
+import { mapGetters,mapActions, mapState} from 'vuex';
+import store from '../../../store';
 export default {
-  name: 'ArticleList',
+    name: 'ArticleList',
+    components: {
+        ConArticle,
+        ArticleRec
+    },
+    computed: {
+        ...mapGetters({
+            articleState: 'articles/getState'
+        })
+    },
+    methods:{
+        search(){
+           store.dispatch('articles/search',this.query).then((res)=>{
+
+           });
+        }
+    },
+    beforeCreate(to, from, next) {
+        store.dispatch('articles/search').then();
+        store.dispatch('articles/rec').then();
+    },
+    
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

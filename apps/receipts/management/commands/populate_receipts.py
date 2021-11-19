@@ -31,7 +31,7 @@ class Command(BaseCommand):
 
         page_size = options['receipts'] // 10
         for _ in range(10):
-            data = [generator.getReceipt() for _ in range(page_size)]
+            data = [generator.getReceipt() for _ in range(2,page_size)]
             Receipt.bulk_import(data, merchant, members)
 
     def get_merchant(self, options):

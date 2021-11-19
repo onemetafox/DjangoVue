@@ -1,14 +1,14 @@
 import types from '../../mutation-types'
 
 const mutations = {
-  [types.articles.get](state, articleList) {
-    state.articleList = articleList
+  [types.articles.get](state, productList) {
+    state.productList = productList
   },
-  [types.articles.rec](state, articleList) {
-    state.articleRecList = articleList
+  [types.articles.rec](state, productList) {
+    state.productRecList = productList
   },
-  [types.articles.getone](state, article) {
-    state.article = article
+  [types.articles.getone](state, product) {
+    state.product = product
   },
   [types.articles.query](state, query) {
     state.query = query

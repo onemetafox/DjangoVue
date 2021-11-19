@@ -8,7 +8,7 @@ const state = {
   articleRecList: [],
   query: null,
   queryHistory: [],
-  id: -1,
+  editID: -1,
   editing: false,
   page : {num: 1, size: 10}
 };

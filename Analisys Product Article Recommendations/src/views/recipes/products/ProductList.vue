@@ -7,17 +7,17 @@
         <p>Start enter the product name and then select from matches list</p>
     </div>
     <div id="products">
-        <ConProduct :productList = "getState.productList"/>
+        <ConProduct :productList = "productState.productList"/>
     </div>
     <div id="product-rec">
-        <ProductRec :productRecList="getState.productRecList"/>
+        <ProductRec/>
     </div>
 </template>
 
 <script>
 import ConProduct from './ConProduct.vue';
 import ProductRec from './ProductRec.vue';
-import { mapGetters,mapActions} from 'vuex';
+import { mapGetters,mapActions, mapState} from 'vuex';
 import store from '../../../store';
 export default {
     name: 'ProductList',
@@ -26,12 +26,9 @@ export default {
         ProductRec
     },
     computed: {
-      // ...mapGetters({
-      //   productState : 'products/getState'
-      // })
-      getState(){
-        return store.getters['products/getState']
-      }
+        ...mapGetters({
+            productState: 'products/getState'
+        })
     },
     methods:{
         search(){
@@ -41,12 +38,8 @@ export default {
         }
     },
     beforeCreate(to, from, next) {
-      store.dispatch('products/search').then(() => {
-        next()
-      });
-      store.dispatch('products/rec').then(() => {
-        next()
-      });
+        store.dispatch('products/search').then();
+        store.dispatch('products/rec').then();
     },
     
 }

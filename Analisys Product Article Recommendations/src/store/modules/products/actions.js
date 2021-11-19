@@ -11,10 +11,11 @@ const actions = {
       let url = query ? `${resource}?query=${query}` : resource
       new ApiClient(url, {apiVersion}).get()
         .then(res => {
-          if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
-          else if (res.data.data) {
-            context.commit(types.products.get, JSON.parse(res.data.data))
-            console.log('res...', JSON.parse(res.data.data))
+          if (res.data.status == "200"){
+            context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
+          } else if (res.data) {
+
+            context.commit(types.products.get, res.data)
           }
           resolve()
         })
@@ -29,9 +30,11 @@ const actions = {
       let url = resource+"/rec"
       new ApiClient(url, {apiVersion}).get()
       .then(res => {
-          if (res.data.msg) context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
-          else if (res.data.data) {
-            context.commit(types.products.rec, JSON.parse(res.data.data))
+          if (res.data.status == "200"){
+            context.commit(`global/${types.SET_ERROR}`, res.data.msg, {root: true})
+          } else if (res.data) {
+
+            context.commit(types.products.rec, res.data)
           }
           resolve()
         })
@@ -126,11 +129,14 @@ const actions = {
   editing: async (context, editing) => {
     context.commit(types.products.editing, editing);
   },
-  article: async (context, article) => {
-    context.commit(types.products.getone, article)
+  product: async (context, product) => {
+    context.commit(types.products.getone, product)
   },
-  articleRecList: async(context, articlesList) =>{
-    context.commit(types.products.getrec, articlesList)
+  productList: async(context, productList) => {
+    context.commit(types.products.get, productList)
+  },
+  productRecList: async(context, productRecList) =>{
+    context.commit(types.products.rec, productRecList)
   },
   page: async (context, page) => {
     context.commit(types.products.page, page)
