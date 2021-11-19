@@ -1,6 +1,8 @@
 from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
 
+from django.http import JsonResponse
+
 from django.http import Http404
 from django.db.models import Sum, F
 from django.db.models.functions import Coalesce
@@ -39,7 +41,7 @@ from .schema import list_article_recs_schema, list_product_recs_schema
 from backend.schema import list_schema
 
 
-@list_schema(StoreFilter)
+# @list_schema(StoreFilter)
 class StoreList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = StoreSerializer
@@ -92,7 +94,7 @@ class StoreDetail(viewsets.ModelViewSet):
             return self.destroy(request, *args, **kwargs)
 
 
-@list_schema(ArticleFilter)
+# @list_schema(ArticleFilter)
 class ArticleList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = ArticleSerializer
@@ -115,7 +117,7 @@ class ArticleList(generics.ListAPIView):
         return Response(serializer.data)
 
 
-@list_schema(OrderFilter)
+# @list_schema(OrderFilter)
 class OrderList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = OrderLineSerializer
@@ -141,7 +143,7 @@ class OrderList(generics.ListAPIView):
         return Response({})
 
 
-@list_schema(PaymentDateFilter)
+# @list_schema(PaymentDateFilter)
 class PaymentList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = PaymentSerializer
@@ -172,11 +174,11 @@ class PaymentList(generics.ListAPIView):
         return Response({})
 
 
-@list_schema(ProductFilter)
+# @list_schema(ProductFilter)
 class ProductList(generics.ListAPIView):
     """List all snippets, or create a new snippet."""
     serializer_class = ProductSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = ProductFilter
 
@@ -192,7 +194,8 @@ class ProductList(generics.ListAPIView):
             return self.get_paginated_response(serializer.data)
 
         serializer = FetchProductSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return JsonResponse({'foo':'bar'})
+        # return Response(serializer.data)
 
 
 @list_article_recs_schema
@@ -289,3 +292,8 @@ class ReceiptOrdersList(generics.GenericAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+# def products(request):
+#     filter = request.POST
+#     return JsonResponse({'foo':'bar'}) 

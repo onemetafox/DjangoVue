@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from datetime import timedelta
 from pathlib import Path
+from corsheaders.defaults import default_methods
 import os
 
 from dotenv import load_dotenv
@@ -32,7 +33,7 @@ DEBUG = int(os.environ.get('DEBUG', 0))
 
 # 'ALLOWED_HOSTS' should be a single string of hosts with a space between each.
 # For example: 'ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 SUPERUSER_DATA = {'email': os.environ.get('DJANGO_SUPERUSER_EMAIL'),
                   'password': os.environ.get('DJANGO_SUPERUSER_PASSWORD')}
@@ -46,6 +47,7 @@ SERVICE_ACCOUNT_PKCS12_FILE_PWD = os.environ.get('SERVICE_ACCOUNT_PKCS12_FILE_PW
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,12 +55,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    'rest_framework',
-    'django_extensions',
+    # 'rest_framework',
+    # 'django_extensions',
     'debug_toolbar',
-    'django_filters',
+    # 'django_filters',
     'drf_spectacular',
-    'corsheaders',
     'apps.user_panel',
     'apps.receipts',
     'apps.trends',
@@ -74,20 +75,21 @@ DEBUG_MIDDLEWARE = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     # 'django.middleware.security.SecurityMiddleware',
-    # 'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'django.contrib.messages.middleware.MessageMiddleware',
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 if DEBUG:
     MIDDLEWARE = DEBUG_MIDDLEWARE + MIDDLEWARE
 
 ROOT_URLCONF = 'backend.urls'
+
 
 TEMPLATES = [
     {
@@ -105,7 +107,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
@@ -213,17 +214,44 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
+ALLOWED_HOSTS=['*']
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
     # frontend-dev server
     'http://localhost:8080',
-    'http://0.0.0.0:8080'
+    'http://0.0.0.0:8080',
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000'
 ]
-
-CORS_EXPOSE_HEADERS =  [
-    'X-Total-Count',
-    'X-Total-Price',
-    'X-Total-Active'
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+# CORS_EXPOSE_HEADERS =  [
+#     'X-Total-Count',
+#     'X-Total-Price',
+#     'X-Total-Active'
+# ]
 
 # The Debug Toolbar is shown only if your IP address
 # is listed in the INTERNAL_IPS setting

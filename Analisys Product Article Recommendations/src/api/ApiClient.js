@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const DEFAULT_API_VERSION = 'v1';
-
+const API_URL = "http://localhost:8000";
 class ApiClient {
   constructor(resource, options = {}) {
     this.apiVersion = `/api/${options.apiVersion || DEFAULT_API_VERSION}`;
@@ -15,7 +15,7 @@ class ApiClient {
   }
 
   baseUrl() {
-    let url = this.apiVersion;
+    let url = API_URL + this.apiVersion;
     if (this.options.accountScoped) {
       const isInsideAccountScopedURLs = window.location.pathname.includes(
         '/app/accounts'
@@ -33,7 +33,9 @@ class ApiClient {
   get() {
     return axios.get(this.url);
   }
-
+  post() {
+    return axios.post(this.url); 
+  }
   show(id) {
     return axios.get(`${this.url}/${id}`);
   }
