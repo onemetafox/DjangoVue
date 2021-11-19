@@ -38,7 +38,9 @@ export default {
         }
     },
     beforeCreate(to, from, next) {
-        store.dispatch('articles/search').then();
+        store.dispatch('articles/search').then(()=>{
+            console.log(store.state)
+        });
         store.dispatch('articles/rec').then();
     },
     

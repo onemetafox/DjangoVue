@@ -18,6 +18,7 @@
         "vue": "^3.1.2",
         "vue-router": "^4.0.12",
         "vue-select": "^3.13.0",
+        "vuetify": "^2.6.0",
         "vuex": "^4.0.2"
     },
     "devDependencies": {

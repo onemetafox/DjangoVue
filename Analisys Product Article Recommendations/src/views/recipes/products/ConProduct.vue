@@ -7,7 +7,6 @@
     <div  id="product-list" class="row ps-5 p-0"  v-for="product in productList" :key="product.id" >  
       <v-card elevation="7" outlined shaped tile dark>
         <v-card-title>{{product.name}}</v-card-title>
-        <v-card-subtitle>{{product.number}}</v-card-subtitle>
         <v-card-text>
           <p>category: {{product.category}}</p>
           <p>sold_item: {{product.sold_item}}</p>
